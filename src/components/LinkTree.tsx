@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Spiral, type SpiralProps } from "@paper-design/shaders-react";
 import { cards, profile, type LinkCard, type LinkItem, type Thumb } from "@/config/linktree";
 import { theme } from "@/config/theme";
+import { withBase } from "@/lib/basePath";
 
 const DISPLAY = "'DM Sans', 'Pretendard', 'Noto Sans KR', system-ui, sans-serif";
 const BODY = "'DM Sans', 'Pretendard', 'Noto Sans KR', system-ui, sans-serif";
@@ -43,7 +44,7 @@ const tabIndexOf = (tab?: string | null) => {
   return cards.findIndex((card) => card.id === t || card.number === t || card.number === t.padStart(2, "0"));
 };
 const itemsOf = (card: LinkCard): LinkItem[] => (card.kind === "group" ? card.items : []);
-const iconSrc = (icon: string) => `/icons/${icon}.svg`;
+const iconSrc = (icon: string) => withBase(`/icons/${icon}.svg`);
 
 function ArrowUpRight({ size = 16 }: { size?: number }) {
   return (
@@ -71,7 +72,7 @@ function ChevronDown({ size = 18 }: { size?: number }) {
 
 function ThumbView({ thumb, size = 52 }: { thumb: Thumb; size?: number }) {
   if (thumb.kind === "image") {
-    return <img className="lt-thumb" src={thumb.src} alt={thumb.alt} loading="lazy" style={{ width: size, height: size }} />;
+    return <img className="lt-thumb" src={withBase(thumb.src)} alt={thumb.alt} loading="lazy" style={{ width: size, height: size }} />;
   }
   return (
     <span className="lt-thumb lt-thumb-icon" style={{ width: size, height: size }} aria-hidden="true">
@@ -181,10 +182,20 @@ function MoreHint({ visible, className = "" }: { visible: boolean; className?: s
   );
 }
 
-export default function LinkTree({ initialTab }: { initialTab?: string }) {
+export default function LinkTree({ initialTab }: { initialTab?: string } = {}) {
   const initialIndex = tabIndexOf(initialTab);
   const [selected, setSelected] = useState(initialIndex >= 0 ? initialIndex : 0);
   const [introSkipped, setIntroSkipped] = useState(initialIndex >= 0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const tab = new URLSearchParams(window.location.search).get("tab");
+    const idx = tabIndexOf(tab ?? undefined);
+    if (idx >= 0) {
+      setSelected(idx);
+      setIntroSkipped(true);
+    }
+  }, []);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [panelMore, setPanelMore] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);

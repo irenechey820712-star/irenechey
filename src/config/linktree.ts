@@ -12,7 +12,10 @@ export type IconName =
   | "contact"
   | "magazine"
   | "code"
-  | "game";
+  | "game"
+  | "daisy"
+  | "sun-hat"
+  | "travel";
 
 export type Thumb =
   | { kind: "image"; src: string; alt: string }
@@ -46,12 +49,12 @@ export type LinkCard =
     };
 
 export const profile = {
-  teacherName: "OOO",
-  title: "DoRms 교사 OOO",
-  introTitle: "DoRms 교사 OOO",
-  introDescription: "환영합니다! 교육현장의 문제를 AI와 함께 재밌게 풀어보는 교사 커뮤니티 DoRms의 OOO입니다.",
-  catalogTitle: "DoRms OOO",
-  catalogDescription: "설명1. 수업, 기록, 자료, 커뮤니티 활동을 이곳에 모아둡니다."
+  teacherName: "아이링쌤",
+  title: "DoRms 교사 아이링쌤",
+  introTitle: "DoRms 교사 아이링쌤",
+  introDescription: "Who Has Seen the Wind? - 바이브코딩의 세계로!",
+  catalogTitle: "DoRms 아이링쌤",
+  catalogDescription: "바이브코딩과 여행을 사랑하는 아이링쌤의 활동을 이곳에 모아둡니다."
 };
 
 export const cards: LinkCard[] = [
@@ -63,63 +66,37 @@ export const cards: LinkCard[] = [
     description: "DoRms에서 나누고 있는 나의 활동을 모아두는 곳",
     thumb: { kind: "image", src: "/assets/dorms-community.png", alt: "DoRms community" },
     items: [
-      { name: "내 활동 링크1", description: "설명1", href: "https://example.com", thumb: { kind: "image", src: "/assets/dorms-community.png", alt: "DoRms community" } },
-      { name: "내 활동 링크2", description: "설명2", href: "https://example.com", thumb: { kind: "icon", icon: "dorms-community" } },
-      { name: "내 활동 링크3", description: "설명3", href: "https://example.com", thumb: { kind: "icon", icon: "docs" } }
-    ]
-  },
-  {
-    kind: "group",
-    id: "classroom",
-    number: "02",
-    name: "링크1",
-    description: "설명1",
-    thumb: { kind: "icon", icon: "school" },
-    items: [
-      { name: "내부 링크1", description: "설명1", href: "https://example.com", thumb: { kind: "icon", icon: "docs" } },
-      { name: "내부 링크2", description: "설명2", href: "https://example.com", thumb: { kind: "icon", icon: "manual" } },
-      { name: "내부 링크3", description: "설명3", href: "https://example.com", thumb: { kind: "icon", icon: "download" } }
+      { name: "자료 공유", description: "도름스 자료 공유 게시판", href: "https://dorms.school/resources", thumb: { kind: "icon", icon: "daisy" } },
+      { name: "내 앱 활동", description: "내가 만든 앱 활동 보기", href: "https://dorms.school/apps/ac53d80b-5f9e-421b-9aa7-b4f3d19614e1", thumb: { kind: "icon", icon: "travel" } }
     ]
   },
   {
     kind: "link",
     id: "naver-blog",
-    number: "03",
+    number: "02",
     name: "네이버 블로그",
-    description: "설명2",
-    href: "https://blog.naver.com/",
+    description: "아이링쌤의 이야기",
+    href: "https://blog.naver.com/irenechey",
     thumb: { kind: "icon", icon: "naver-blog" }
   },
   {
     kind: "link",
     id: "instagram",
-    number: "04",
-    name: "링크2",
-    description: "설명3",
-    href: "https://example.com",
+    number: "03",
+    name: "인스타그램",
+    description: "여행과 일상 기록",
+    href: "https://www.instagram.com/irene_xoxo0713",
     thumb: { kind: "icon", icon: "instagram" }
   },
   {
     kind: "group",
-    id: "resources",
-    number: "05",
-    name: "자료 모음",
-    description: "설명4",
-    thumb: { kind: "icon", icon: "docs" },
-    items: [
-      { name: "자료 링크1", description: "설명1", href: "https://example.com", thumb: { kind: "icon", icon: "manual" } },
-      { name: "자료 링크2", description: "설명2", href: "https://example.com", thumb: { kind: "icon", icon: "download" } }
-    ]
-  },
-  {
-    kind: "group",
     id: "contact",
-    number: "06",
+    number: "04",
     name: "연락처",
-    description: "설명5",
-    thumb: { kind: "icon", icon: "contact" },
+    description: "궁금한 점은 이메일로 문의해 주세요",
+    thumb: { kind: "icon", icon: "sun-hat" },
     items: [
-      { name: "문의 링크", description: "설명1", href: "mailto:teacher@example.com", thumb: { kind: "icon", icon: "contact" } }
+      { name: "이메일 문의", description: "irenechey@naver.com", href: "mailto:irenechey@naver.com", thumb: { kind: "icon", icon: "contact" } }
     ]
   }
 ];
